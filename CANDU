@@ -1,16 +1,16 @@
 % ======================================================================
 %  CANDU-6 - pelny rdzen 3D (Serpent 2)
 %  Struktura plikow (od najmniejszego do najwiekszego):
-%    materials.txt  - materialy i dane termiczne
-%    fuelrod.txt    - pret paliwowy na cala dlugosc kanalu (uniwersum F)
-%    channel.txt    - wiazka 37-pretowa (BUN) i kanal paliwowy (CH)
-%    core.txt       - siatka 380 kanalow (CORE) i geometria glowna (0)
+%    materials      - materialy i dane termiczne
+%    fuelrod        - pret paliwowy na cala dlugosc kanalu (uniwersum F)
+%    channel        - wiazka 37-pretowa (BUN) i kanal paliwowy (CH)
+%    core           - siatka 380 kanalow (CORE) i geometria glowna (0)
 % ======================================================================
 
-include "materials.txt"
-include "fuelrod.txt"
-include "channel.txt"
-include "core.txt"
+include "materials"
+include "fuelrod"
+include "channel"
+include "core"
 
 /******************
  * Run parameters *
