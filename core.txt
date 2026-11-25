@@ -1,0 +1,70 @@
+/************************************************************************
+ * Rdzen CANDU-6                                                         *
+ *   380 kanalow w sieci kwadratowej o podzialce 28.575 cm              *
+ *   kalandria (zbiornik moderatora): promien 379.7 cm,                 *
+ *   dlugosc = dlugosc kanalu paliwowego 594.36 cm                      *
+ *   obszar miedzy ostatnimi kanalami a sciana kalandrii = reflektor    *
+ ************************************************************************/
+
+% --- Pozycja bez kanalu: sam reflektor (pin z jednym materialem
+%     = uniwersum wypelnione w calosci tym materialem)
+
+pin RF
+reflector
+
+% --- Mapa rdzenia
+%     lat <nazwa> 1 <x0> <y0> <nx> <ny> <podzialka>   (typ 1 = kwadratowa)
+%     28 x 28 pozycji: 22 x 22 obszar kanalow + 3 rzedy reflektora z kazdej
+%     strony, zeby siatka (+-400.05 cm) przykryla cala kalandrie (r = 379.7).
+%     Liczba kanalow w rzedach: 8 12 14 16 18 18 20 20 20 22 22 (x2) = 380
+%     CH = kanal paliwowy, RF = reflektor
+
+lat CORE 1  0.0 0.0  28 28  28.575
+
+RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF CH CH CH CH CH CH CH CH RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF RF RF
+RF RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF RF
+RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF
+RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF
+RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF
+RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF
+RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF
+RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF
+RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF
+RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF
+RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF
+RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF
+RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF
+RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF
+RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF
+RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF
+RF RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF RF
+RF RF RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF CH CH CH CH CH CH CH CH CH CH CH CH RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF CH CH CH CH CH CH CH CH RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF
+RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF RF
+
+/************************************************************************
+ * Geometria glowna (uniwersum 0)                                       *
+ ************************************************************************/
+
+surf sCal   cyl  0.0 0.0 379.7      % wewnetrzna sciana kalandrii
+surf sZbot  pz  -297.18             % poczatek kanalow / koniec moderatora
+surf sZtop  pz   297.18
+
+% --- Wnetrze kalandrii wypelnione siatka rdzenia
+%     (komorki siatki wystajace poza walec sa po prostu obciete)
+
+cell cCore  0  fill CORE   -sCal  sZbot -sZtop
+
+% --- Wszystko poza kalandria = "outside" (neutron tam znika)
+
+cell cOut1  0  outside      sCal
+cell cOut2  0  outside     -sCal -sZbot
+cell cOut3  0  outside     -sCal  sZtop

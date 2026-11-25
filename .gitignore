@@ -1,0 +1,28 @@
+# --- Wyniki Serpenta
+*_res.m
+*_det*.m
+*_his*.m
+*_dep.m
+*_arr*.m
+*.out
+*.seed
+*.wrk
+*_geom*.png
+*_mesh*.png
+
+# --- LaTeX
+*.aux
+*.log
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.out.ps
+
+# --- System / edytor
+.vscode/
+Thumbs.db
+desktop.ini
+
+# --- Materialy zrodlowe (notatki, rysunki z artykulow) - tylko lokalnie
+Serpent/

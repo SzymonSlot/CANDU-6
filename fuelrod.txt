@@ -1,0 +1,89 @@
+/************************************************************************
+ * Pret paliwowy CANDU-6 (element wiazki 37-pretowej)                   *
+ *   promien pastylki UO2        0.6075 cm                              *
+ *   wewn. promien koszulki      0.6122 cm (szczelina = void)           *
+ *   zewn. promien koszulki      0.6540 cm                              *
+ *   dlugosc wiazki 49.53 cm, aktywne paliwo 48.0 cm,                   *
+ *   zatyczki (end caps) 0.765 cm z kazdej strony                       *
+ *   12 wiazek w kanale -> 594.36 cm, kanal od z=-297.18 do z=+297.18   *
+ ************************************************************************/
+
+% --- Przekroj poprzeczny preta w czesci paliwowej
+%     (pin = uniwersum z koncentrycznymi warstwami, nieskonczone w z;
+%      ostatnia pozycja bez promienia wypelnia reszte przestrzeni)
+
+pin pFuel
+fuel       0.6075
+void       0.6122
+clad       0.6540
+coolant
+
+% --- Przekroj poprzeczny zatyczki (pelny Zircaloy-4)
+
+pin pPlug
+clad       0.6540
+coolant
+
+/************************************************************************
+ * Plaszczyzny osiowe. Pret "F" obejmuje od razu cala dlugosc kanalu    *
+ * (12 wiazek jedna za druga). Dwie sasiednie zatyczki stykaja sie,     *
+ * wiec miedzy wiazkami jest jedna warstwa zatyczek 2 x 0.765 = 1.53 cm.*
+ ************************************************************************/
+
+surf sRodBot  pz  -297.180   % poczatek pierwszej wiazki
+surf sFb01    pz  -296.415   % wiazka  1: poczatek paliwa
+surf sFt01    pz  -248.415   % wiazka  1: koniec paliwa
+surf sFb02    pz  -246.885   % wiazka  2: poczatek paliwa
+surf sFt02    pz  -198.885   % wiazka  2: koniec paliwa
+surf sFb03    pz  -197.355   % wiazka  3: poczatek paliwa
+surf sFt03    pz  -149.355   % wiazka  3: koniec paliwa
+surf sFb04    pz  -147.825   % wiazka  4: poczatek paliwa
+surf sFt04    pz   -99.825   % wiazka  4: koniec paliwa
+surf sFb05    pz   -98.295   % wiazka  5: poczatek paliwa
+surf sFt05    pz   -50.295   % wiazka  5: koniec paliwa
+surf sFb06    pz   -48.765   % wiazka  6: poczatek paliwa
+surf sFt06    pz    -0.765   % wiazka  6: koniec paliwa
+surf sFb07    pz     0.765   % wiazka  7: poczatek paliwa
+surf sFt07    pz    48.765   % wiazka  7: koniec paliwa
+surf sFb08    pz    50.295   % wiazka  8: poczatek paliwa
+surf sFt08    pz    98.295   % wiazka  8: koniec paliwa
+surf sFb09    pz    99.825   % wiazka  9: poczatek paliwa
+surf sFt09    pz   147.825   % wiazka  9: koniec paliwa
+surf sFb10    pz   149.355   % wiazka 10: poczatek paliwa
+surf sFt10    pz   197.355   % wiazka 10: koniec paliwa
+surf sFb11    pz   198.885   % wiazka 11: poczatek paliwa
+surf sFt11    pz   246.885   % wiazka 11: koniec paliwa
+surf sFb12    pz   248.415   % wiazka 12: poczatek paliwa
+surf sFt12    pz   296.415   % wiazka 12: koniec paliwa
+surf sRodTop  pz   297.180   % koniec ostatniej wiazki
+
+% --- Uniwersum "F": pret o dlugosci calego kanalu
+%     cell <nazwa> <uniwersum> fill <pin> <powierzchnie>
+
+cell cF_bot  F  coolant              -sRodBot
+cell cF_p00  F  fill pPlug  sRodBot  -sFb01
+cell cF_f01  F  fill pFuel  sFb01    -sFt01
+cell cF_p01  F  fill pPlug  sFt01    -sFb02
+cell cF_f02  F  fill pFuel  sFb02    -sFt02
+cell cF_p02  F  fill pPlug  sFt02    -sFb03
+cell cF_f03  F  fill pFuel  sFb03    -sFt03
+cell cF_p03  F  fill pPlug  sFt03    -sFb04
+cell cF_f04  F  fill pFuel  sFb04    -sFt04
+cell cF_p04  F  fill pPlug  sFt04    -sFb05
+cell cF_f05  F  fill pFuel  sFb05    -sFt05
+cell cF_p05  F  fill pPlug  sFt05    -sFb06
+cell cF_f06  F  fill pFuel  sFb06    -sFt06
+cell cF_p06  F  fill pPlug  sFt06    -sFb07
+cell cF_f07  F  fill pFuel  sFb07    -sFt07
+cell cF_p07  F  fill pPlug  sFt07    -sFb08
+cell cF_f08  F  fill pFuel  sFb08    -sFt08
+cell cF_p08  F  fill pPlug  sFt08    -sFb09
+cell cF_f09  F  fill pFuel  sFb09    -sFt09
+cell cF_p09  F  fill pPlug  sFt09    -sFb10
+cell cF_f10  F  fill pFuel  sFb10    -sFt10
+cell cF_p10  F  fill pPlug  sFt10    -sFb11
+cell cF_f11  F  fill pFuel  sFb11    -sFt11
+cell cF_p11  F  fill pPlug  sFt11    -sFb12
+cell cF_f12  F  fill pFuel  sFb12    -sFt12
+cell cF_p12  F  fill pPlug  sFt12    -sRodTop
+cell cF_top  F  coolant               sRodTop
