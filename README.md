@@ -30,8 +30,6 @@ Main results: `CANDU_res.m` (k-eff: `ANA_KEFF`, `IMP_KEFF`),
 detectors in `CANDU_det0.m` – channel power map (`ChPower`), axial power per bundle
 (`AxPower`), two-group flux across the core (`FluxX`).
 
-Input files must have LF line endings (enforced by `.gitattributes`).
-
 ## Model assumptions
 
 - fresh natural UO2 fuel at a single temperature (1200 K),

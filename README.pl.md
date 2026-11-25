@@ -30,8 +30,6 @@ Główne wyniki: `CANDU_res.m` (k-eff: `ANA_KEFF`, `IMP_KEFF`),
 detektory w `CANDU_det0.m` – mapa mocy kanałowej (`ChPower`), moc osiowa na wiązkę
 (`AxPower`), strumień dwugrupowy wzdłuż średnicy rdzenia (`FluxX`).
 
-Pliki wejściowe muszą mieć końce linii LF (wymuszone przez `.gitattributes`).
-
 ## Założenia modelu
 
 - świeże paliwo z uranu naturalnego, jedna temperatura paliwa (1200 K),
